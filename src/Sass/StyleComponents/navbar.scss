@@ -1,0 +1,47 @@
+@import '../font.scss';
+@import '../colors.scss';
+
+.nav-bar-container{
+    min-height:100vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding:2rem;
+    background-color: $pure-white;
+    grid-column: 1/1;
+
+
+    h2{
+        font-size: $mediun-font;
+      color:$light-black;
+    }
+    
+    nav{
+        margin-top:3rem;
+        
+        
+        ul{
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+
+            li{
+                margin:1rem 0;
+            }
+        }
+    }
+
+    
+    .illustraion-container{
+        
+        margin-top: auto;
+        img{
+          width:100%;
+          height: 400px;
+          transform:scaleX(-1);
+          
+           
+        }
+    }
+    
+}

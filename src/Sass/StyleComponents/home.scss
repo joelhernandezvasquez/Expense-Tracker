@@ -1,0 +1,45 @@
+@import '../font.scss';
+@import '../colors.scss';
+
+.home-container{
+   grid-column: 2/7;
+   
+   display:grid;
+   grid-template-columns: 1.5fr 0.5fr;
+}
+
+.dashboard{
+    background:$pure-white;
+    h1{
+        font-size: $large-font;
+        color:$light-black;
+    }
+}
+
+.financial-items-container{
+    
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+   
+    .financial-item-box{
+        width:200px;
+        height:100px;
+        border-radius:10px;
+        background:$pure-white;
+
+        .icon-container{
+            width:50px;
+            height:50px;
+            border:1px solid black;
+        }
+        
+    }
+}
+
+
+
+.report{
+    //background:blue;
+}
+
