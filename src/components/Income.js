@@ -6,7 +6,7 @@ const Income = ()  =>{
             <div className="icon-container">
             <i class="fa fa-line-chart" aria-hidden="true"></i>
           </div>
-          <span> Balance</span>
+          <span> Income</span>
           <h2> $0.00</h2>
         </div>
     )

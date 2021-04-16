@@ -3,13 +3,13 @@
 
 .home-container{
    grid-column: 2/7;
-   
    display:grid;
    grid-template-columns: 1.5fr 0.5fr;
+   position: relative;
 }
 
 .dashboard{
-    background:$pure-white;
+    background:$light-gray;
     h1{
         font-size: $large-font;
         color:$light-black;
@@ -37,9 +37,73 @@
     }
 }
 
+.transaction-container{
+    
+    margin-top: 4rem;
+    height:500px;
+    border:1px solid red;
+
+    .transaction{
+        
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+        margin:1rem 0;
+        padding:0.5rem;
+        height:80px;
+        border-radius:10px;
+        background:$pure-white;
+
+
+        .transaction-details{
+            width:200px;
+            height:50px;
+            background:$light-gray;
+        }
+        .transaction-balance{
+            width: 100px;
+            height: 50px;
+            background:$light-gray;
+        }
+
+
+    }
+}
+
 
 
 .report{
-    //background:blue;
+   padding:2rem 0;
+    width:95%;
+    margin: 0 auto;
+    .pie-chart{
+        background:$light-gray;
+        height:300px;
+    }
+
+    .report-item{
+        background:$dark-gray;
+        height:50px;
+    }
+}
+
+.transaction-modal{
+    width:500px;
+    height:300px;
+    background:$dark-gray;
+    position:absolute;
+    top:0px;
+    transform: translate(50%,50%);
+    z-index: 3;
+    
+}
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100vh;
+    background:rgba(0,0,0,0.3);
+
 }
 

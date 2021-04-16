@@ -1,9 +1,20 @@
 import React from 'react'
 
-Report = ()=> {
+const Report = ()=> {
+    
+    const renderedReportList = () =>{
+        return(
+            <div className="report-item">
+
+            </div>
+        )
+    }
+    
     return (
         <div>
             Report
+
+            {renderedReportList()}
         </div>
     )
 }
