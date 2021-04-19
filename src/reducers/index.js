@@ -1,26 +1,12 @@
 
+import addTransactionReducer from './addTransactionReducer';
 import {combineReducers} from 'redux';
+import openTransactionFormReducer from './openTransactionFormReducer';
 
+const allReducers = combineReducers({
+  isTransactionFormOpen:openTransactionFormReducer,
+  transactions:addTransactionReducer
+})
 
-const initialState = {
-    isTransactionFormOpen:false
-}
+export default allReducers;
 
-const openTransactionFormReducer = (state = initialState,action ) =>{
-    
- switch(action.type)
-    {
-      case'OPEN_TRANSACTION_FORM': return{
-          ...state,
-          isTransactionFormOpen: !state.isTransactionFormOpen 
-      }
-
-      default: return state;
-    }
-
-}
-
-
-export default combineReducers({
-    isTransactionFormOpen:openTransactionFormReducer
-});

@@ -11,28 +11,19 @@ import TransactionForm from './TransactionForm';
 import {openTransactionForm} from '../actions';
 import Overlay from './Overlay';
 import {connect} from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 
-
-class Home extends React.Component{
+const Home = ({isTransactionFormOpen,openTransactionForm}) =>{
    
-   
-    
-   OnHandleTransaction = () =>
-    {
-  
-   this.props.openTransactionForm();
-    }
-    render() {
-
         return(
+            
             <div className="home-container">
                
                <section className="dashboard">
                 <div className="container">
                  <h1>Dashboard</h1>
                  <p>Check all of your information</p>
+                 
                  
                  <div className="financial-items-container">
                    <Balance/>
@@ -51,30 +42,37 @@ class Home extends React.Component{
                   <PieChart/>
                   <Report/>
                   
-                  <button onClick={this.OnHandleTransaction}>
+                  <button onClick={openTransactionForm}>
                    Add Transactions
                   </button>
                   
                </section>
                
                <div className="transanction-modal-form">
-                 
-                 {this.props.isTransactionFormOpen? <TransactionForm/> : ''}
-                 {this.props.isTransactionFormOpen? <Overlay/> : ''}
+               
+                 {isTransactionFormOpen? <TransactionForm/> : ''} 
+                 {isTransactionFormOpen? <Overlay/> : ''} 
                </div>
                
             </div>
         )
     }
-}
+
 
 
 
 const mapStateToProps = (state) =>{
-  console.log(state);
+
    return{
-      isTransactionFormOpen:state.openTransactionForm
+     
+     isTransactionFormOpen:state.isTransactionFormOpen.isTransactionFormOpen
    }
 }
 
-export default connect(mapStateToProps,{openTransactionForm}) (Home);
+const mapDispatchToProps = dispatch =>{
+   return{
+     openTransactionForm: () => dispatch(openTransactionForm())
+   }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home);
