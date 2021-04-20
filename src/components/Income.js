@@ -1,14 +1,21 @@
 import React from 'react'
+import {connect} from 'react-redux';
 
-const Income = ()  =>{
+const Income = ({income})  =>{
     return (
         <div className="financial-item-box">
             <div className="icon-container">
             <i class="fa fa-line-chart" aria-hidden="true"></i>
           </div>
-          <span> Income</span>
-          <h2> $0.00</h2>
+          <span>$Income</span>
+          <h2> ${income}</h2>
         </div>
     )
 }
-export default Income;
+
+const mapStateToProps = (state) =>{
+ return{
+     income: state.income.income
+ }
+}
+export default connect(mapStateToProps)(Income);

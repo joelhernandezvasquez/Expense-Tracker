@@ -1,14 +1,22 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
- const Balance = () => {
+ const Balance = ({balance}) => {
     return (
         <div className="financial-item-box">
           <div className="icon-container">
           <i class="fa fa-money" aria-hidden="true"></i>
           </div>
           <span> Balance</span>
-          <h2> $0.00</h2>
+          <h2> ${balance}</h2>
         </div>
     )
 }
-export default Balance;
+
+const mapStateToProps = (state) =>{
+  return{
+   balance: state.balance.balance
+  }
+}
+
+export default connect(mapStateToProps)(Balance);

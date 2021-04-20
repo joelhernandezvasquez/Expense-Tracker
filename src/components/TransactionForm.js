@@ -2,33 +2,36 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {openTransactionForm} from '../actions';
 import {addTransaction} from'../actions';
+import {incrementBalance} from '../actions';
+import {decrementBalance} from '../actions';
+import {addIncome} from '../actions';
+import {addExpense} from '../actions';
 import {useState,useEffect} from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const TransactionForm = ({openTransactionForm,addTransaction,transactions}) => {
+const TransactionForm = ({openTransactionForm,addTransaction,transactions,balance,incrementBalance,decrementBalance,addIncome,addExpense}) => {
     
     const[purchaseText,setPurchaseText] = useState('');
     const [transactionDate,setTransactionDate] =useState(new Date())
     const[typeTransaction,setTypeTransaction] = useState("");
-    const[amount,setAmount] = useState(0.00);
+    const[amount,setAmount] = useState("0.00");
     
 
    useEffect(()=>{
      
      return(()=>{
        setPurchaseText("");
-       setTypeTransaction();
-       setAmount("");
+       setAmount("0.00");
      })
    },[transactions])
 
     const onHandleTransaction = (e) =>{
         
-      
       if(checkEmptyFields())
       {
         addTransaction(setTransaction());
+        setBalance();
       }
     
     }
@@ -69,6 +72,36 @@ const TransactionForm = ({openTransactionForm,addTransaction,transactions}) => {
         amount:amount
       }
     }
+
+    const setBalance = () =>{
+      
+      if(typeTransaction ==='income')
+      {
+        incrementBalance(amount);
+        addIncome(amount);
+        return;
+      }
+
+      if(typeTransaction ==='expense')
+      {
+        if(verifyExpense())
+        {
+        decrementBalance(amount);
+        addExpense(amount);
+        }
+        else{
+          alert("this expense exceeds the current balance");
+        }
+        return;
+      }
+
+      
+    }
+
+    const verifyExpense = () =>{
+       return amount <= balance;
+    }
+
 
 
     return (
@@ -123,14 +156,20 @@ const mapStateToProps = (state) =>{
 
     return{
       isTransactionFormOpen:state.isTransactionFormOpen,
-      transactions:state.transactions.transactions
+      transactions:state.transactions.transactions,
+      balance:state.balance.balance
     }
  }
  
  const mapDispatchToProps = dispatch =>{
     return{
       openTransactionForm: () => dispatch(openTransactionForm()),
-      addTransaction: (event) => dispatch(addTransaction(event))
+      addTransaction: (event) => dispatch(addTransaction(event)),
+      incrementBalance: (event) => dispatch(incrementBalance(event)),
+      decrementBalance: (event) => dispatch(decrementBalance(event)),
+      addIncome: (event) => dispatch(addIncome(event)),
+      addExpense: (event) => dispatch(addExpense(event))
+
     }
  }
 export default connect(mapStateToProps,mapDispatchToProps)(TransactionForm);
