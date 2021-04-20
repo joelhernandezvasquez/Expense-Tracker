@@ -30,11 +30,18 @@ const TransactionForm = ({openTransactionForm,addTransaction,transactions,balanc
         
       if(checkEmptyFields())
       {
-        addTransaction(setTransaction());
-        setBalance();
+        if (!verifyTransaction()) {
+            addTransaction(setTransaction());
+            setBalance();
+        }
+        else {
+          alert("The transaction could not be completed due the expense exceeds the current balance");
+
+        }
       }
     
-    }
+  }
+  
 
     const checkEmptyFields = () =>{
       
@@ -54,10 +61,12 @@ const TransactionForm = ({openTransactionForm,addTransaction,transactions,balanc
         alert("please fill out all required fields.")
         return;
       }
-
-
       return true;
-    }
+  }
+  
+  const verifyTransaction = () => {
+    return typeTransaction === 'expense' && amount > balance;
+  }
 
     const setTransaction = () =>{
       const [date] = transactionDate.toLocaleDateString("en-US").split("/");
@@ -84,14 +93,8 @@ const TransactionForm = ({openTransactionForm,addTransaction,transactions,balanc
 
       if(typeTransaction ==='expense')
       {
-        if(verifyExpense())
-        {
         decrementBalance(amount);
         addExpense(amount);
-        }
-        else{
-          alert("this expense exceeds the current balance");
-        }
         return;
       }
 

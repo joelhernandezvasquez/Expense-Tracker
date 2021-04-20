@@ -22,7 +22,6 @@ const TransationList = ({transactions}) => {
 
 const mapStateToProps = (state) =>{
     
- 
     return{
         transactions:state.transactions.transactions
       }
